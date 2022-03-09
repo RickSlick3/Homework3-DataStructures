@@ -68,10 +68,18 @@ int main(void) {
 		int userInput = 0;
 		cin >> userInput;
 
+		// make sure there are cards in the users/comps deck
+		if (userDeck.getNumCards() == 0) {
+			userDeck.addCard(userPile.takeFromPile());
+		}
+		if (compDeck.getNumCards() == 0) {
+			compDeck.addCard(compPile.takeFromPile());
+		}
+
 		// computer strategy
 		int compCards = 1;
 		if ((compDeck.getNumCards() + compPile.getPileSize()) >= 2) {
-			if (compDeck.seeTopCard() <= 6) {
+			if (compDeck.seeTopCard() <= 5) {
 				if (compPile.getPileSize() != 0) {
 					compCards = 2;
 				}
@@ -80,6 +88,7 @@ int main(void) {
 				}
 			}
 		}
+		
 
 		// user move based on input
 		switch (userInput)

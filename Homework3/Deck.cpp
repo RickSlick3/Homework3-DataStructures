@@ -34,10 +34,17 @@ Card* Deck::takeTopCard()
 		throw DeckisEmpty();
 	}
 	Card* cardi = top;
-	top = top->below;
-	top->above = nullptr;
 	this->numCards--;
-	return cardi;
+	if (this->numCards == 1) {
+		top = nullptr;
+		bottom = nullptr;
+		return cardi;
+	}
+	else {
+		top = top->below;
+		top->above = nullptr;
+		return cardi;
+	}
 }
 
 int Deck::seeTopCard()
